@@ -1,0 +1,15 @@
+[Unit]
+Description=Tomcat service
+
+[Service]
+User=root
+ExecStart=/opt/tomcat/bin/catalina.sh run
+TimeoutSec=30
+Restart=on-failure
+RestartSec=30
+StartLimitInterval=350
+StartLimitBurst=10
+
+[Install]
+WantedBy=multi-user.target
+

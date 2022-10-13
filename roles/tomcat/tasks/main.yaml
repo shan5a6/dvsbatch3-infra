@@ -1,0 +1,35 @@
+- name: Installing openjdk11
+  command: amazon-linux-extras install java-openjdk11 -y
+- name: Create tomcat folder
+  file:
+    path: /opt/tomcat
+    state: directory
+
+- name: Download and untar tomcat
+  unarchive:
+    src: "http://www-eu.apache.org/dist/tomcat/tomcat-8/v{{tomcat_version}}/bin/apache-tomcat-{{tomcat_version}}.tar.gz"
+    dest: /opt/tomcat
+    extra_opts: [--strip-components=1]
+    remote_src: yes
+
+- name: configure servers.xml file
+  template:
+    src: server.xml.j2
+    dest: /opt/tomcat/conf/server.xml
+- name: configure context.xml file
+  template:
+    src: context.xml.j2
+    dest: /opt/tomcat/webapps/manager/META-INF/context.xml
+- name: configure tomcat-users.xml file
+  template:
+    src: tomcat-users.xml.j2
+    dest: /opt/tomcat/conf/tomcat-users.xml
+- name: configure tomcat service
+  template:
+    src:  tomcat-service.j2
+    dest: /etc/systemd/system/tomcat-service.service
+
+- name: restart tomcat
+  systemd:
+    name: tomcat-service
+    state:  restarted   
