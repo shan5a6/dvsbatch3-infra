@@ -1,3 +1,6 @@
 ---
 tomcat_version: 8.5.83
 env: "" #dev/sit/uat/pt
+artifact_version: ""
+nexus_user: ""
+nexus_password: ""

@@ -1,0 +1,7 @@
+---
+- name: Deploying java application
+  hosts: "{{ env }}"
+  vars_files:
+    - ./vars/myvars.yaml
+  roles:
+    - cicd    
