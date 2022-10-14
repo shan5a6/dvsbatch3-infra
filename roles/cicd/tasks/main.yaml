@@ -3,7 +3,7 @@
   maven_artifact:
     group_id: in.shan5a6
     artifact_id: myweb
-    repository_url: 'http://34.208.151.31/repository/app1-artifacts'
+    repository_url: 'http://35.92.15.103/repository/app1-artifacts'
     extension: war
     version: "{{ artifact_version }}"
     username: "{{ nexus_user }}"
